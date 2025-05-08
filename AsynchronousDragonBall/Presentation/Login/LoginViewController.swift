@@ -179,7 +179,12 @@ class LoginViewController: UIViewController {
     
     // MARK: - Navigation
     private func navigateToHeroes() {
-        let heroesVC = HeroesViewController()
+        let secureDataService = SecureDataService.shared
+        let apiClient = APIClient(secureDataService: secureDataService)
+        let heroRepository = HeroRepository(apiClient: apiClient)
+        let authRepository = AuthRepository(apiClient: apiClient, secureDataService: secureDataService)
+        let heroesViewModel = HeroesViewModel(heroRepository: heroRepository, authRepository: authRepository)
+        let heroesVC = HeroesViewController(viewModel: heroesViewModel)
         navigationController?.setViewControllers([heroesVC], animated: true)
     }
     

@@ -21,7 +21,7 @@ class SplashViewController: UIViewController {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "dragonball_logo")
+        imageView.image = UIImage(systemName: "bolt.circle") // Placeholder if you don't have a logo
         return imageView
     }()
     
@@ -42,12 +42,30 @@ class SplashViewController: UIViewController {
         
         // Add slight delay for splash screen effect
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            print("SplashViewController checking authentication")
             self.checkAuthentication()
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("SplashViewController: viewDidAppear called")
+        print("SplashViewController: view background color is \(view.backgroundColor?.description ?? "nil")")
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("SplashViewController: viewWillAppear called")
+        
+        // Force UI elements to be visible
+        view.backgroundColor = .systemBackground
+        logoImageView.image = UIImage(systemName: "bolt.circle")
+        logoImageView.tintColor = .label
+    }
+    
     // MARK: - Setup
     private func setupUI() {
+        print("SplashViewController setting up UI")
         view.backgroundColor = .systemBackground
         
         // Add subviews
@@ -68,6 +86,9 @@ class SplashViewController: UIViewController {
     
     // MARK: - Navigation
     private func checkAuthentication() {
+        // For debugging
+        print("Token exists: \(secureDataService.getToken() != nil)")
+        
         // Check if user is logged in
         if secureDataService.getToken() != nil {
             navigateToHeroes()
@@ -77,12 +98,35 @@ class SplashViewController: UIViewController {
     }
     
     private func navigateToLogin() {
-        let loginVC = LoginViewController()
+        print("Navigating to login screen")
+        
+        // Create dependencies
+        let secureDataService = SecureDataService.shared
+        let apiClient = APIClient(secureDataService: secureDataService)
+        let authRepository = AuthRepository(apiClient: apiClient, secureDataService: secureDataService)
+        
+        // Create view model
+        let loginViewModel = LoginViewModel(authRepository: authRepository)
+        
+        // Create and navigate to view controller
+        let loginVC = LoginViewController(viewModel: loginViewModel)
         navigationController?.setViewControllers([loginVC], animated: true)
     }
     
     private func navigateToHeroes() {
-        let heroesVC = HeroesViewController()
+        print("Navigating to heroes screen")
+        
+        // Create dependencies
+        let secureDataService = SecureDataService.shared
+        let apiClient = APIClient(secureDataService: secureDataService)
+        let heroRepository = HeroRepository(apiClient: apiClient)
+        let authRepository = AuthRepository(apiClient: apiClient, secureDataService: secureDataService)
+        
+        // Create view model
+        let heroesViewModel = HeroesViewModel(heroRepository: heroRepository, authRepository: authRepository)
+        
+        // Create and navigate to view controller
+        let heroesVC = HeroesViewController(viewModel: heroesViewModel)
         navigationController?.setViewControllers([heroesVC], animated: true)
     }
 }

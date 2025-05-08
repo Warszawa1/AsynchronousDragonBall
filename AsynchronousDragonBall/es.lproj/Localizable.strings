@@ -5,3 +5,30 @@
   Created by Ire  Av on 8/5/25.
   
 */
+
+// Login
+"login.title" = "Iniciar Sesión";
+"login.username" = "Usuario";
+"login.password" = "Contraseña";
+"login.button" = "Entrar";
+"login.error.emptyEmail" = "Por favor, introduce tu email";
+"login.error.emptyPassword" = "Por favor, introduce tu contraseña";
+
+// Heroes
+"heroes.title" = "Héroes";
+"heroes.empty" = "No se encontraron héroes";
+
+// Hero Detail
+"detail.title" = "Detalles del Héroe";
+"detail.transformations" = "Transformaciones";
+"detail.noTransformations" = "No hay transformaciones disponibles";
+
+// Logout
+"logout.confirm.title" = "Cerrar Sesión";
+"logout.confirm.message" = "¿Estás seguro que deseas cerrar sesión?";
+"logout.confirm.button" = "Cerrar Sesión";
+
+// Common
+"common.error" = "Error";
+"common.ok" = "Aceptar";
+"common.cancel" = "Cancelar";

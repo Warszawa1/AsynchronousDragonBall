@@ -152,7 +152,11 @@ class HeroesViewController: UIViewController {
                 self?.viewModel.logoutTrigger.send()
                 
                 // Navigate to login
-                let loginVC = LoginViewController()
+                let secureDataService = SecureDataService.shared
+                let apiClient = APIClient(secureDataService: secureDataService)
+                let authRepository = AuthRepository(apiClient: apiClient, secureDataService: secureDataService)
+                let loginViewModel = LoginViewModel(authRepository: authRepository)
+                let loginVC = LoginViewController(viewModel: loginViewModel)
                 self?.navigationController?.setViewControllers([loginVC], animated: true)
             }
         ))
@@ -200,7 +204,10 @@ extension HeroesViewController: UICollectionViewDelegate {
         guard let hero = viewModel.hero(at: indexPath.row) else { return }
         
         // Navigate to hero detail
-        let detailViewModel = HeroDetailViewModel(hero: hero)
+        let secureDataService = SecureDataService.shared
+        let apiClient = APIClient(secureDataService: secureDataService)
+        let heroRepository = HeroRepository(apiClient: apiClient)
+        let detailViewModel = HeroDetailViewModel(hero: hero, heroRepository: heroRepository)
         let detailVC = HeroDetailViewController(viewModel: detailViewModel)
         navigationController?.pushViewController(detailVC, animated: true)
     }

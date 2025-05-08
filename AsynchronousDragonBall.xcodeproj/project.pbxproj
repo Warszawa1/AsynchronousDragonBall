@@ -49,11 +49,21 @@
 			);
 			target = 6B0C611E2DCCA40B00A43B0D /* AsynchronousDragonBallTests */;
 		};
+		6B0C624C2DCCBD6900A43B0D /* Exceptions for "AsynchronousDragonBall" folder in "AsynchronousDragonBall" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 6B0C610E2DCCA40900A43B0D /* AsynchronousDragonBall */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		6B0C61112DCCA40900A43B0D /* AsynchronousDragonBall */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6B0C624C2DCCBD6900A43B0D /* Exceptions for "AsynchronousDragonBall" folder in "AsynchronousDragonBall" target */,
+			);
 			path = AsynchronousDragonBall;
 			sourceTree = "<group>";
 		};
@@ -432,6 +442,7 @@
 				DEVELOPMENT_TEAM = VAA9LFFTNJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AsynchronousDragonBall/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -461,6 +472,7 @@
 				DEVELOPMENT_TEAM = VAA9LFFTNJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AsynchronousDragonBall/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
